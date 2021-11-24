@@ -4,11 +4,13 @@
 
 | Column             | Type    | Options                   |
 | ------------------ | ------- | ------------------------- |
-| nickname           | string  | null: false , unique: true|
+| nickname           | string  | null: false               |
 | email              | string  | null: false , unique: true|
 | encrypted_password | string  | null: false               |
 | last_name          | string  | null: false               |
 | first_name         | string  | null: false               | 
+| last_name_kana     | string  | null: false               |
+| first_name_kana    | string  | null: false               | 
 | birthday           | integer | null: false               |
 
  - has_many :items
@@ -16,17 +18,17 @@
 
 ## items テーブル
 
-| Column            | Type      | Options                         |
-| ----------------- | --------- | ------------------------------- |
-| item_name         | string    | null: false                     |
-| item_explanation  | text      | null: false                     |
-| price             | integer   | null: false                     |
-| category          | string    | null: false                     |
-| status            | string    | null: false                     |
-| shipping_fee      | integer   | null: false                     | 
-| shipment_source   | string    | null: false                     |
-| days_to_ship      | integer   | null: false                     | 
-| user              | reference | null: false , foreign_key: true |
+| Column             | Type      | Options                         |
+| ------------------ | --------- | ------------------------------- |
+| item_name          | string    | null: false                     |
+| item_explanation   | text      | null: false                     |
+| price              | integer   | null: false                     |
+| category_id        | string    | null: false                     |
+| status_id          | string    | null: false                     |
+| shipping_fee_id    | string    | null: false                     | 
+| prefecture_id      | string    | null: false                     |
+| days_to_ship_id    | string    | null: false                     | 
+| user               | reference | null: false , foreign_key: true |
 
  - belongs_to :user
  - has_one :buyer
@@ -35,9 +37,6 @@
 
 | Column               | Type      | Options                         |
 | -------------------- | --------- | ------------------------------- |
-| credit_card_number   | integer   | null: false,                    |
-| date_of_expiry       | integer   | null: false                     |
-| security_code        | integer   | null: false                     |
 | user                 | reference | null: false , foreign_key: true |
 | item                 | reference | null: false , foreign_key: true | 
 
@@ -49,12 +48,12 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| postal_code      | integer    | null: false                    |
+| postal_code      | string     | null: false                    |
 | prefecture       | string     | null: false                    |
 | municipalities   | string     | null: false                    |
 | address          | string     | null: false                    |
-| building         | string     | null: false                    |
-| telephone_number | integer    | null: false,                   |
+| building         | string     |                                |
+| telephone_number | string     | null: false                    |
 | buyer            | references | null: false, foreign_key: true |
 
  - belongs_to :buyer

@@ -1,0 +1,2 @@
+class PrefectureGenle < ApplicationRecord
+end

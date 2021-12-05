@@ -1,0 +1,2 @@
+class DaysToShipGenle < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class StatusGenle < ApplicationRecord
+end

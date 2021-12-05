@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string        :item_name
       t.text          :item_explanation
       t.integer       :price
-      t.integer        :category_id
+      t.integer       :category_id
       t.integer       :status_id
       t.integer       :shipping_fee_id
       t.integer       :prefecture_id

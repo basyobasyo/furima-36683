@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
 
   def index
+    @item = Item.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -22,7 +23,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_name,:item_explanation, :price, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :days_to_ship_id, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name,:item_explanation, :price, :category_id, :status_id, :shippingfee_id, :prefecture_id, :daystoship_id, :image).merge(user_id: current_user.id)
   end
 
 end

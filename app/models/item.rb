@@ -9,12 +9,24 @@ class Item < ApplicationRecord
   validates :image           , presence: true
 
   validates :category_id    , numericality: { other_than: 1 } 
-  validates :shipping_fee_id, numericality: { other_than: 1 } 
+  validates :shippingfee_id , numericality: { other_than: 1 } 
   validates :status_id      , numericality: { other_than: 1 } 
   validates :prefecture_id  , numericality: { other_than: 1 } 
-  validates :days_to_ship_id, numericality: { other_than: 1 } 
+  validates :daystoship_id  , numericality: { other_than: 1 } 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :shippingfee, :status, :prefecture, :daystoship
+  belongs_to :category
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :shippingfee
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :status
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :daystoship
 
 end

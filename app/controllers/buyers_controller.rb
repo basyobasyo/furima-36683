@@ -2,10 +2,12 @@ class BuyersController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    @buyer_address = BuyerAddress.new(buyer_params)
+    @buyer_address = BuyerAddress.new
   end
 
   def create
+    @item = Item.find(params[:item_id])
+    @buyer_address = BuyerAddress.new(buyer_params)
     if @buyer_address.valid?
       @buyer_address.save
       redirect_to root_path
@@ -17,6 +19,6 @@ class BuyersController < ApplicationController
   private
 
   def buyer_params
-    params.require(:buyer_address).permit(:postal_code, :prefecture, :municipalities, :address, :building, :telephone_number).merge(user_id: current_user.id, item_id: @item.id)
+    params.require(:buyer_address).permit(:postal_code, :prefecture_id, :municipalities, :address, :building, :telephone_number).merge(user_id: current_user.id, item_id: @item.id)
   end
 end

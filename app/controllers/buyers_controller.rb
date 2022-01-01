@@ -2,6 +2,9 @@ class BuyersController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
+      if current_user == @item.user
+        redirect_to root_path
+      end
     @buyer_address = BuyerAddress.new
   end
 
@@ -31,4 +34,5 @@ class BuyersController < ApplicationController
       currency: 'jpy' 
     )
   end
+
 end

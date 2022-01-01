@@ -11,6 +11,7 @@ class BuyerAddress
     validates :user_id
     validates :item_id
     validates :buyer_id
+    validates :token
   end
 
   def save

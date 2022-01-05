@@ -59,9 +59,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
       it 'shipping_fee_id = 1では登録できない' do
-        @item.shipping_fee_id = 1
+        @item.shippingfee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
+        expect(@item.errors.full_messages).to include("Shippingfee must be other than 1")
       end
       it 'prefecture_id = 1では登録できない' do
         @item.prefecture_id = 1
@@ -69,9 +69,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it 'days_to_ship_id = 1では登録できない' do
-        @item.days_to_ship_id = 1
+        @item.daystoship_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
+        expect(@item.errors.full_messages).to include("Daystoship must be other than 1")
       end
       it 'userが紐づいていないと登録ができない' do
         @item.user = nil

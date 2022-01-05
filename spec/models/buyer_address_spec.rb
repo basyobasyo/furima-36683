@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe BuyerAddress, type: :model do
-
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
@@ -29,7 +28,7 @@ RSpec.describe BuyerAddress, type: :model do
       it 'postal_codeにハイフンが含まれていないと登録が出来ない' do
         @buyer_address.postal_code = '1234567'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@buyer_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが空の場合' do
         @buyer_address.prefecture_id = ''
@@ -39,12 +38,12 @@ RSpec.describe BuyerAddress, type: :model do
       it 'prefecture_idが数字以外の場合' do
         @buyer_address.prefecture_id = 'あ'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Prefecture is not a number")
+        expect(@buyer_address.errors.full_messages).to include('Prefecture is not a number')
       end
       it 'prefecture_idが1の場合' do
         @buyer_address.prefecture_id = 1
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@buyer_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it 'municipalitiesが空の場合' do
         @buyer_address.municipalities = ''
@@ -64,7 +63,7 @@ RSpec.describe BuyerAddress, type: :model do
       it 'telephone_numberが数字以外の場合' do
         @buyer_address.telephone_number = '-'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Telephone number is not a number")
+        expect(@buyer_address.errors.full_messages).to include('Telephone number is not a number')
       end
       it 'userと紐づいていない場合' do
         @buyer_address.user_id = nil

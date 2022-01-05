@@ -4,7 +4,7 @@ class BuyerAddress
 
   with_options presence: true do
     validates :postal_code      ,format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :prefecture_id    ,numericality: {only_integer: true}
+    validates :prefecture_id    ,numericality: {only_integer: true, other_than: 1}
     validates :municipalities
     validates :address
     validates :telephone_number ,numericality: {only_integer: true}

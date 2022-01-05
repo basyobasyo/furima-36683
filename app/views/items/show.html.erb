@@ -23,7 +23,7 @@
         <%= @item.shippingfee.name %>
       </span>
     </div>
-
+<% unless Buyer.exists?(item_id: @item.id) %>
   <% if user_signed_in? %>
     <% if current_user == @item.user %>
       <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
@@ -32,11 +32,12 @@
     <% end %>
 
     <% if current_user != @item.user %>
-      <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <%= link_to "購入画面に進む", item_buyers_path(@item.id) ,class:"item-red-btn"%>
-      <%# //商品が売れていない場合はこちらを表示しましょう %>
+      <%# <% unless Buyer.exists?(item_id: @item.id) %>
+        <%= link_to "購入画面に進む", item_buyers_path(@item.id) ,class:"item-red-btn"%>
+      <%# <% end %>
     <% end %>
   <% end %>
+<% end %>
 
     <div class="item-explain-box">
       <span><%= @item.item_explanation %></span>

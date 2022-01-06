@@ -13,6 +13,10 @@ RSpec.describe BuyerAddress, type: :model do
       it '商品購入情報が全て正しく入力されている' do
         expect(@buyer_address).to be_valid
       end
+      it '建物名が空でも購入処理ができる' do
+        @buyer_address.building = ''
+        expect(@buyer_address).to be_valid
+      end
     end
     context '商品購入が出来ない場合' do
       it 'tokenが空である場合' do
@@ -64,6 +68,16 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.telephone_number = '-'
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include('Telephone number is not a number')
+      end
+      it 'telephone_numberが9桁以下の場合登録出来ない' do
+        @buyer_address.telephone_number = '123456789'
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Telephone number is too short (minimum is 10 characters)")
+      end
+      it 'telephone_numberが12桁以上の場合登録出来ない' do
+        @buyer_address.telephone_number = '123456789012'
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Telephone number is too long (maximum is 11 characters)")
       end
       it 'userと紐づいていない場合' do
         @buyer_address.user_id = nil

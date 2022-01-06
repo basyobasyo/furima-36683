@@ -7,7 +7,7 @@ class BuyerAddress
     validates :prefecture_id, numericality: { only_integer: true, other_than: 1 }
     validates :municipalities
     validates :address
-    validates :telephone_number, numericality: { only_integer: true }, length: {in: 10..11}
+    validates :telephone_number, numericality: { only_integer: true }, length: { in: 10..11 }
     validates :user_id
     validates :item_id
     validates :token
@@ -15,6 +15,7 @@ class BuyerAddress
 
   def save
     buyer = Buyer.create(user_id: user_id, item_id: item_id)
-    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building: building, telephone_number: telephone_number, buyer_id: buyer.id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address,
+                   building: building, telephone_number: telephone_number, buyer_id: buyer.id)
   end
 end

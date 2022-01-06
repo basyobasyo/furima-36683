@@ -72,12 +72,12 @@ RSpec.describe BuyerAddress, type: :model do
       it 'telephone_numberが9桁以下の場合登録出来ない' do
         @buyer_address.telephone_number = '123456789'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Telephone number is too short (minimum is 10 characters)")
+        expect(@buyer_address.errors.full_messages).to include('Telephone number is too short (minimum is 10 characters)')
       end
       it 'telephone_numberが12桁以上の場合登録出来ない' do
         @buyer_address.telephone_number = '123456789012'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Telephone number is too long (maximum is 11 characters)")
+        expect(@buyer_address.errors.full_messages).to include('Telephone number is too long (maximum is 11 characters)')
       end
       it 'userと紐づいていない場合' do
         @buyer_address.user_id = nil
